@@ -1,0 +1,59 @@
+# neoforge.mods.toml -- NeoForge loading metadata. Placeholder values are expanded from
+# gradle.properties by the generateModMetadata task in build.gradle. Kept in sync with the
+# fabric.mod.json alongside it so the same jar loads on both loaders (and as a raw data pack).
+
+# The mod loader type to load - for regular FML @Mod mods it should be javafml.
+modLoader="javafml" #mandatory
+
+# A version range to match for said mod loader - for regular FML @Mod it will be the FML version.
+loaderVersion="${loader_version_range}" #mandatory
+
+# The license for the mod.
+license="${mod_license}"
+
+# This mod bundles its assets directly, so they load as part of the mod rather than appearing as a
+# separate, toggleable resource pack in the resource pack menu.
+showAsResourcePack=${mod_show_as_resource_pack}
+
+# A URL to refer people to when problems occur with this mod.
+issueTrackerURL="${mod_issue_tracker_url}"
+
+[[mods]] #mandatory
+    # The modid of the mod.
+    modId="${mod_id}" #mandatory
+    # The version number of the mod.
+    version="${mod_version}" #mandatory
+    # A display name for the mod.
+    displayName="${mod_name}" #mandatory
+    # A file name (in the root of the mod JAR) containing a logo for display.
+    logoFile="${mod_logo}"
+    # A URL to query for updates for this mod. See https://docs.neoforged.net/docs/misc/updatechecker/
+    updateJSONURL="${mod_update_json_url}"
+    # A URL for the "homepage" for this mod, displayed in the mod UI.
+    displayURL="${mod_display_url}"
+    # The authors of the mod, displayed in the mod UI.
+    authors="${mod_authors}"
+    # The description text for the mod.
+    description="${mod_description}"
+
+# The pack's content targets Cobblemon, so require it and load after it.
+[[dependencies.${mod_id}]]
+    modId="cobblemon"
+    type="required"
+    versionRange="${cobblemon_version_range}"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
